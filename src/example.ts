@@ -7,10 +7,24 @@ import { loadConfig } from './config';
 const LOGGER = createLogger('index');
 const CONFIG = loadConfig('./config.example.json');
 
+interface Sayer {
+  say(message: string): void;
+}
+
+interface Greeter {
+  greet(): void;
+}
+
 const serviceBuilders = new Map<string, ServiceBuilder>()
-  .set('hello', (_, config) => {
+  .set('sayer', () => {
     return {
-      greet: () => config.greeting
+      say: (message: string) => LOGGER.log(message)
+    };
+  })
+  .set('greeter', (serviceRegsistry, config) => {
+    const sayer = serviceRegsistry.getService<Sayer>('sayer');
+    return {
+      greet: () => sayer.say(config.greeting)
     };
   });
 
@@ -19,10 +33,6 @@ const serviceManager = new ServiceManager(
   serviceBuilders
 );
 
-interface HelloService {
-  greet(): string;
-}
+const greeter = serviceManager.getService<Greeter>('greeter');
 
-const helloService = serviceManager.getService<HelloService>('hello');
-
-LOGGER.log(helloService.greet());
+greeter.greet();
