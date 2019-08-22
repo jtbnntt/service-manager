@@ -14,8 +14,6 @@ export function loadConfig(filename: string) {
   return JSON.parse(fs.readFileSync(filename).toString());
 }
 
-type Config = {
+export default interface Config {
   [key: string]: string
-};
-
-export default Config;
+}

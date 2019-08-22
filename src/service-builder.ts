@@ -2,6 +2,6 @@ import Config from './config';
 import Service from './service';
 import ServiceRegistry from './service-registry';
 
-type ServiceBuilder = (serviceRegistry: ServiceRegistry, config: Config) => Service;
-
-export default ServiceBuilder;
+export default interface ServiceBuilder {
+  (serviceRegistry: ServiceRegistry, config: Config): Service;
+}

@@ -19,9 +19,9 @@ const serviceManager = new ServiceManager(
   serviceBuilders
 );
 
-type HelloService = {
-  greet: () => string
-};
+interface HelloService {
+  greet(): string;
+}
 
 const helloService = serviceManager.getService<HelloService>('hello');
 
