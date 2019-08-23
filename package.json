@@ -2,11 +2,14 @@
   "name": "@jtbnntt/appconstructor",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "files": ["dist"],
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf ./dist",
+    "copy-package-json": "cp package.json ./dist/",
+    "dist": "npm run prepare-dist && npm publish ./dist",
+    "prepare-dist": "npm run clean && npm run build && npm run copy-package-json",
+    "tarball": "npm run prepare-dist && cd dist && TARBALL=$(npm pack) && echo $TARBALL && mv $TARBALL ..",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
