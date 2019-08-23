@@ -17,7 +17,7 @@ export default class ServiceManager implements ServiceRegistry {
     this.services = new Map<string, Service>();
   }
 
-  addService(name: string, service: Service) {
+  registerService(name: string, service: Service) {
     this.services.set(name, service);
   }
 
@@ -34,7 +34,7 @@ export default class ServiceManager implements ServiceRegistry {
       const builder = this.serviceBuilders.get(name)!;
       LOGGER.info(`Found builder for "${name}"`)
 
-      this.addService(name, builder(this, this.config));
+      this.registerService(name, builder(this, this.config));
       LOGGER.info(`Registered service "${name}"`);
     }
 
