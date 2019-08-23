@@ -4,13 +4,19 @@ import { createLogger } from './logging';
 
 const LOGGER = createLogger('Config');
 
-export function loadConfig(filename: string) {
-  if (!fs.existsSync(filename)) {
-    const message = `Config file "${filename}" does not exist.`;
+export function loadConfig(...candidateFilenames: Array<string>) {
+  const filename = candidateFilenames.find(filename => {
+    LOGGER.info(`Checking if file "${filename}" exists`);
+    return fs.existsSync(filename);
+  });
+
+  if (!filename) {
+    const message = 'Found no suitable config file';
     LOGGER.error(message);
     throw new Error(message);
   }
 
+  LOGGER.info(`Loading config from ${filename}`);
   return JSON.parse(fs.readFileSync(filename).toString());
 }
 

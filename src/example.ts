@@ -5,7 +5,11 @@ import { createLogger } from './logging';
 import { loadConfig } from './config';
 
 const LOGGER = createLogger('index');
-const CONFIG = loadConfig('./config.example.json');
+const CONFIG = loadConfig(
+  'non-existent-file.json',
+  './config.example.json',
+  'another-filename.json'
+);
 
 interface Sayer {
   say(message: string): void;
