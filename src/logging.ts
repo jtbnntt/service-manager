@@ -5,12 +5,9 @@ function createLogMethod(
 ) {
   const prefix = level ? `[${level}][${key}]` : `[${key}]`;
   return (...args: Array<any>) => {
-    args.forEach(arg => {
-      if (typeof(arg) === 'string') {
-        arg.split('\n').forEach(argPart => {
-          originalMethod(prefix, argPart);
-        });
-      }
+    const newArgs = args.map(arg => arg.toString()).join(' ').split('\n');
+    newArgs.forEach(arg => {
+      originalMethod(prefix, arg);
     });
   }
 }
