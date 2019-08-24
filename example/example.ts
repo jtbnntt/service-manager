@@ -1,11 +1,12 @@
-import ServiceBuilder from './service-builder';
-import ServiceManager from './service-manager';
+import {
+  ServiceBuilder,
+  ServiceManager,
+  config,
+  logging
+} from '../dist';
 
-import { createLogger } from './logging';
-import { loadConfig } from './config';
-
-const LOGGER = createLogger('index');
-const CONFIG = loadConfig(
+const LOGGER = logging.createLogger('index');
+const CONFIG = config.loadConfig(
   'non-existent-file.json',
   './config.example.json',
   'another-filename.json'
