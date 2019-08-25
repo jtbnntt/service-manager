@@ -1,6 +1,6 @@
 {
   "name": "@jtbnntt/service-manager",
-  "version": "0.0.1-build.0",
+  "version": "0.0.1-build.1",
   "description": "",
   "main": "dist/index.js",
   "files": [
