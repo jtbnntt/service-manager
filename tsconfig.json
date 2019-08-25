@@ -62,8 +62,8 @@
     ,
     "declaration": true,
     "lib": ["es6"],
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "outDir": "dist",
+    "rootDir": "src"
   },
-  "exclude": ["example"]
+  "exclude": ["example", "dist"]
 }
