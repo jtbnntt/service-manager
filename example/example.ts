@@ -8,6 +8,7 @@ import {
 const LOGGER = logging.createLogger('index');
 const CONFIG = config.loadConfig(
   'non-existent-file.json',
+  undefined,
   './config.example.json',
   'another-filename.json'
 );

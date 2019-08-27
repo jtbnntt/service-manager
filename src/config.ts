@@ -6,8 +6,10 @@ const LOGGER = createLogger('Config');
 
 export function loadConfig(...candidateFilenames: Array<string>) {
   const filename = candidateFilenames.find(filename => {
-    LOGGER.info(`Checking if file "${filename}" exists`);
-    return fs.existsSync(filename);
+    if (filename) {
+      LOGGER.info(`Checking if file "${filename}" exists`);
+      return fs.existsSync(filename);
+    }
   });
 
   if (!filename) {
@@ -21,5 +23,5 @@ export function loadConfig(...candidateFilenames: Array<string>) {
 }
 
 export default interface Config {
-  [key: string]: string
+  [key: string]: any
 }

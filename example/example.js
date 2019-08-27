@@ -7,6 +7,7 @@ const {
 const LOGGER = logging.createLogger('index');
 const CONFIG = config.loadConfig(
   'non-existent-file.json',
+  undefined,
   './example/config.json',
   'another-filename.json'
 );
