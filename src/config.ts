@@ -4,7 +4,7 @@ import { createLogger } from './logging';
 
 const LOGGER = createLogger('Config');
 
-export function loadConfig(...candidateFilenames: Array<string>) {
+export function loadConfig(...candidateFilenames: Array<string|undefined>) {
   const filename = candidateFilenames.find(filename => {
     if (filename) {
       LOGGER.info(`Checking if file "${filename}" exists`);
